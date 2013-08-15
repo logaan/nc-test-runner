@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+PORT=$1
+
+while read FILE
+do
+  echo $FILE | nc -l $PORT
+done

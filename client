@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+
+HOST=$1
+PORT=$2
+
+function run_test_and_report_results() {
+  FILE=$1
+  echo "running $FILE..."
+
+  sleep 1
+  RESULTS="finished $FILE."
+
+  echo $RESULTS | nc $HOST $PORT
+}
+
+while FILE=`nc $HOST $PORT`
+do
+  if [ -z $FILE ]
+  then
+    break
+  else
+    run_test_and_report_results $FILE
+  fi
+done
+
